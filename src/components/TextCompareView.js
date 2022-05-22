@@ -1,97 +1,96 @@
 import React from 'react';
 import ReactDiffViewer, { DiffMethod } from 'react-diff-viewer';
 
-import newCode from './../TestDataNew.json';
-import oldCode from './../TestDataOld.json';
-//  const oldCode = require('./../TestDataOld.rjs').default;
-//  const newCode = require('./../TestDataNew.rjs').default;
+import newCodeJson from './../TestDataNew.json';
+import oldCodeJosn from './../TestDataOld.json';
+/*
+const oldCode = `
+const a = 10
+const b = 10
+const c = () => console.log('foo')
 
-// const oldCode = `
-// const a = 10
-// const b = 10
-// const c = () => console.log('foo')
+if(a > 10) {
+  console.log('bar')
+}
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+`;
+const newCode = `
+const a = 10
+const boo = 10
 
-// if(a > 10) {
-//   console.log('bar')
-// }
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// `;
-// const newCode = `
-// const a = 10
-// const boo = 10
-
-// if(a === 10) {
-//   console.log('bar')
-// }
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// console.log('done')
-// asdf
-// `;
+if(a === 10) {
+  console.log('bar')
+}
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+console.log('done')
+asdf
+`;
+*/
 const newStyles = {
   variables: {
     dark: {
@@ -133,8 +132,8 @@ function TextCompareView() {
   const [highlightLine, setHighlightLine] = React.useState([]);
   const onLineNumberClick = (id, e) => {
     let newHighlightLine = [id];
-    if (e.shiftKey && newHighlightLine.length === 1) {
-      const [dir, oldId] = newHighlightLine[0].split('-');
+    if (e.shiftKey && highlightLine.length === 1) {
+      const [dir, oldId] = highlightLine[0].split('-');
       const [newDir, newId] = id.split('-');
       if (dir === newDir) {
         newHighlightLine = [];
@@ -147,6 +146,9 @@ function TextCompareView() {
     }
     setHighlightLine(newHighlightLine)
   };
+
+  const oldCode = JSON.stringify(oldCodeJosn,null,2);
+  const newCode = JSON.stringify(newCodeJson,null,2);
 
   return (
     <ReactDiffViewer 
